@@ -1,0 +1,32 @@
+{
+  "redirects": [
+    { "source": "/buqon-dine-gartentisch-mit-integriertem-grill/", "destination": "/de/gartentisch-mit-integriertem-grill/", "permanent": true },
+    { "source": "/buqon-dine-gartentisch-mit-integriertem-grill", "destination": "/de/gartentisch-mit-integriertem-grill/", "permanent": true },
+    { "source": "/gartentisch-umbauen/", "destination": "/de/gartentisch-umbauen/", "permanent": true },
+    { "source": "/gartentisch-umbauen", "destination": "/de/gartentisch-umbauen/", "permanent": true },
+    { "source": "/sicherheit-beim-grillen/", "destination": "/de/sicherheit-beim-grillen/", "permanent": true },
+    { "source": "/sicherheit-beim-grillen", "destination": "/de/sicherheit-beim-grillen/", "permanent": true },
+    { "source": "/edelstahl-grill-tisch-dine/", "destination": "/de/", "permanent": true },
+    { "source": "/edelstahl-grill-tisch-dine", "destination": "/de/", "permanent": true },
+    { "source": "/kontakt/", "destination": "/de/#contact", "permanent": true },
+    { "source": "/kontakt", "destination": "/de/#contact", "permanent": true },
+    { "source": "/impressum/", "destination": "/de/impressum/", "permanent": true },
+    { "source": "/impressum", "destination": "/de/impressum/", "permanent": true },
+    { "source": "/agb/", "destination": "/de/agb/", "permanent": true },
+    { "source": "/agb", "destination": "/de/agb/", "permanent": true },
+    { "source": "/datenschutz/", "destination": "/de/datenschutz/", "permanent": true },
+    { "source": "/datenschutz", "destination": "/de/datenschutz/", "permanent": true },
+    { "source": "/widerrufsrecht/", "destination": "/de/widerrufsrecht/", "permanent": true },
+    { "source": "/widerrufsrecht", "destination": "/de/widerrufsrecht/", "permanent": true },
+    { "source": "/blog/", "destination": "/de/", "permanent": true },
+    { "source": "/blog", "destination": "/de/", "permanent": true },
+    { "source": "/rezepte/", "destination": "/de/", "permanent": true },
+    { "source": "/rezepte", "destination": "/de/", "permanent": true },
+    { "source": "/ueber-uns/", "destination": "/de/", "permanent": true },
+    { "source": "/ueber-uns", "destination": "/de/", "permanent": true },
+    { "source": "/faqs/", "destination": "/de/", "permanent": true },
+    { "source": "/faqs", "destination": "/de/", "permanent": true },
+    { "source": "/en/edelstahl-grill-tisch-dine/", "destination": "/en/", "permanent": true },
+    { "source": "/en/edelstahl-grill-tisch-dine", "destination": "/en/", "permanent": true }
+  ]
+}

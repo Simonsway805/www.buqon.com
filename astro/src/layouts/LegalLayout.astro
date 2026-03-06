@@ -13,7 +13,7 @@ const { title, description } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 ---
 
-<Layout title={title} description={description}>
+<Layout title={title} description={description} noindex={true}>
   <Navbar />
   <main class="pt-28 md:pt-36 pb-20 md:pb-24">
     <article class="max-w-3xl mx-auto px-6">
