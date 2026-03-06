@@ -1,5 +1,19 @@
 import { ui, defaultLocale, type Locale } from "./ui";
 
+const slugMap: Record<string, string> = {
+  "gartentisch-mit-integriertem-grill": "garden-table-with-integrated-grill",
+  "gartentisch-umbauen": "garden-table-conversion",
+  "sicherheit-beim-grillen": "grilling-safety-tips",
+  "impressum": "imprint",
+  "agb": "terms",
+  "datenschutz": "privacy",
+  "widerrufsrecht": "withdrawal",
+};
+
+const reverseSlugMap: Record<string, string> = Object.fromEntries(
+  Object.entries(slugMap).map(([de, en]) => [en, de])
+);
+
 export function getLangFromUrl(url: URL): Locale {
   const [, lang] = url.pathname.split("/");
   if (lang in ui) return lang as Locale;
@@ -19,5 +33,13 @@ export function getLocalizedPath(path: string, locale: Locale): string {
   } else {
     segments.unshift(locale);
   }
+
+  for (let i = 1; i < segments.length; i++) {
+    const map = locale === "en" ? slugMap : reverseSlugMap;
+    if (segments[i] in map) {
+      segments[i] = map[segments[i]];
+    }
+  }
+
   return "/" + segments.join("/") + "/";
 }
