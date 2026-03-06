@@ -2,6 +2,8 @@
 import "@/styles/global.css";
 import { getLangFromUrl } from "@/i18n/utils";
 import CookieConsent from "@/components/CookieConsent.astro";
+import SpeedInsights from "@vercel/speed-insights/astro";
+import Analytics from "@vercel/analytics/astro";
 
 interface Props {
   title: string;
@@ -30,6 +32,8 @@ const lang = getLangFromUrl(Astro.url);
   <body class="bg-bg text-text antialiased overflow-x-hidden">
     <slot />
     <CookieConsent />
+    <SpeedInsights />
+    <Analytics />
 
     <script>
       import gsap from "gsap";
