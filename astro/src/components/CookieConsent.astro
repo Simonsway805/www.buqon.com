@@ -56,10 +56,20 @@ const declineLabel = lang === "de" ? "Ablehnen" : "Decline";
     });
   }
 
+  function loadGTM() {
+    if (window["dataLayer"]) return;
+    (function(w: any,d: Document,s: string,l: string,i: string){w[l]=w[l]||[];w[l].push({"gtm.start":
+    new Date().getTime(),event:"gtm.js"});var f=d.getElementsByTagName(s)[0]!,
+    j=d.createElement(s) as HTMLScriptElement,dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
+    "https://www.googletagmanager.com/gtm.js?id="+i+dl;f.parentNode!.insertBefore(j,f);
+    })(window,document,"script","dataLayer","GTM-ND47RKG");
+  }
+
   function dismiss(value: string) {
     localStorage.setItem("cookie-consent", value);
     banner.classList.remove("translate-y-0");
     banner.classList.add("translate-y-full");
+    if (value === "accepted") loadGTM();
   }
 
   document.getElementById("cookie-accept")!.addEventListener("click", () => dismiss("accepted"));
