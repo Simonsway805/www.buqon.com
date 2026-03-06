@@ -10,15 +10,17 @@ interface Props {
   description?: string;
   noindex?: boolean;
   ogImage?: string;
+  ogType?: "website" | "article";
 }
 
-const { title, description = "Buqon DINE – Multifunktionaler Gartentisch mit Grilleinsatz", noindex = false, ogImage } = Astro.props;
+const { title, description = "Buqon DINE – Multifunktionaler Gartentisch mit Grilleinsatz", noindex = false, ogImage, ogType = "website" } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 const otherLang = lang === "de" ? "en" : "de";
 const site = "https://www.buqon.com";
 const canonicalUrl = site + Astro.url.pathname;
 const alternateUrl = site + getLocalizedPath(Astro.url.pathname, otherLang);
 const socialImage = ogImage || site + "/images/grillabend-mit-freunden.webp";
+const fullTitle = title.toLowerCase().includes("buqon") ? title : `${title} | Buqon`;
 ---
 
 <!doctype html>
@@ -36,9 +38,9 @@ const socialImage = ogImage || site + "/images/grillabend-mit-freunden.webp";
     <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/playfair-latin.woff2" as="font" type="font/woff2" crossorigin />
 
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:url" content={canonicalUrl} />
-    <meta property="og:title" content={title} />
+    <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={socialImage} />
     <meta property="og:locale" content={lang === "de" ? "de_DE" : "en_US"} />
@@ -46,11 +48,11 @@ const socialImage = ogImage || site + "/images/grillabend-mit-freunden.webp";
     <meta property="og:site_name" content="Buqon" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
+    <meta name="twitter:title" content={fullTitle} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={socialImage} />
 
-    <title>{title}</title>
+    <title>{fullTitle}</title>
     <script is:inline>
       if (localStorage.getItem("cookie-consent") === "accepted") {
         (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':

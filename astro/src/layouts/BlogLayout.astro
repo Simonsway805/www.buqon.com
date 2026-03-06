@@ -13,9 +13,10 @@ interface Props {
 
 const { title, description, heroImage, publishDate } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
+const site = "https://www.buqon.com";
 ---
 
-<Layout title={title} description={description}>
+<Layout title={title} description={description} ogType="article" ogImage={heroImage ? site + heroImage : undefined}>
   <Navbar />
   <main>
     {heroImage && (
