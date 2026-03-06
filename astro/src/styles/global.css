@@ -1,5 +1,41 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("/fonts/inter-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("/fonts/inter-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: "Playfair Display";
+  font-style: normal;
+  font-weight: 500 700;
+  font-display: swap;
+  src: url("/fonts/playfair-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Playfair Display";
+  font-style: normal;
+  font-weight: 500 700;
+  font-display: swap;
+  src: url("/fonts/playfair-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
 @theme {
   --color-bg: #000000;
   --color-bg-surface: #0a0a0a;
@@ -53,4 +89,99 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-amber-dark);
+}
+
+/* Scroll-reveal animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(2rem);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-2.5rem);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(2.5rem);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+
+.reveal-scale {
+  opacity: 0;
+  transform: translateY(2rem) scale(0.95);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.reveal.visible,
+.reveal-left.visible,
+.reveal-right.visible,
+.reveal-scale.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Stagger children */
+.reveal-stagger > * {
+  opacity: 0;
+  transform: translateY(2rem);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.reveal-stagger.visible > * {
+  opacity: 1;
+  transform: none;
+}
+
+.reveal-stagger.visible > *:nth-child(1) { transition-delay: 0s; }
+.reveal-stagger.visible > *:nth-child(2) { transition-delay: 0.1s; }
+.reveal-stagger.visible > *:nth-child(3) { transition-delay: 0.2s; }
+.reveal-stagger.visible > *:nth-child(4) { transition-delay: 0.3s; }
+
+/* Hero intro animation */
+@keyframes hero-fade-up {
+  from { opacity: 0; transform: translateY(3rem); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes hero-fade-up-scale {
+  from { opacity: 0; transform: translateY(5rem) scale(0.92); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes hero-glow {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scroll-pulse {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(100%); }
+}
+
+.hero-animate-title {
+  animation: hero-fade-up 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+}
+
+.hero-animate-subtitle {
+  animation: hero-fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.6s both;
+}
+
+.hero-animate-image {
+  animation: hero-fade-up-scale 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.8s both;
+}
+
+.hero-animate-glow {
+  animation: hero-glow 1.2s ease-out 1.4s both;
+}
+
+.hero-animate-scroll {
+  animation: hero-fade-up 0.8s ease-out 1.6s both;
+}
+
+.scroll-line-animate {
+  animation: scroll-pulse 1.5s ease-in-out infinite;
 }

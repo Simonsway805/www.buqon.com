@@ -76,25 +76,15 @@ const anchor = (hash: string) => isHome ? hash : `/${lang}/${hash}`;
 </nav>
 
 <script>
-  import gsap from "gsap";
-  import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-  gsap.registerPlugin(ScrollTrigger);
-
   const navbar = document.getElementById("navbar")!;
 
-  ScrollTrigger.create({
-    start: "top -80",
-    onUpdate: (self) => {
-      if (self.direction === 1 && self.scroll() > 80) {
-        navbar.classList.add("bg-bg/90", "backdrop-blur-xl", "shadow-lg", "shadow-black/20");
-        navbar.classList.remove("bg-transparent");
-      } else if (self.scroll() <= 80) {
-        navbar.classList.remove("bg-bg/90", "backdrop-blur-xl", "shadow-lg", "shadow-black/20");
-        navbar.classList.add("bg-transparent");
-      }
-    },
-  });
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 80) {
+      navbar.classList.add("bg-bg/90", "backdrop-blur-xl", "shadow-lg", "shadow-black/20");
+    } else {
+      navbar.classList.remove("bg-bg/90", "backdrop-blur-xl", "shadow-lg", "shadow-black/20");
+    }
+  }, { passive: true });
 
   const mobileBtn = document.getElementById("mobile-menu-btn")!;
   const mobileMenu = document.getElementById("mobile-menu")!;
@@ -103,28 +93,17 @@ const anchor = (hash: string) => isHome ? hash : `/${lang}/${hash}`;
   const bar3 = document.getElementById("bar3")!;
   let isOpen = false;
 
-  mobileBtn.addEventListener("click", () => {
-    isOpen = !isOpen;
-    mobileMenu.classList.toggle("hidden");
+  function toggleMenu(open: boolean) {
+    isOpen = open;
+    mobileMenu.classList.toggle("hidden", !open);
+    bar1.style.transform = open ? "rotate(45deg) translateY(4px)" : "";
+    bar2.style.opacity = open ? "0" : "1";
+    bar3.style.transform = open ? "rotate(-45deg) translateY(-4px)" : "";
+  }
 
-    if (isOpen) {
-      gsap.to(bar1, { rotation: 45, y: 4, duration: 0.3 });
-      gsap.to(bar2, { opacity: 0, duration: 0.2 });
-      gsap.to(bar3, { rotation: -45, y: -4, duration: 0.3 });
-    } else {
-      gsap.to(bar1, { rotation: 0, y: 0, duration: 0.3 });
-      gsap.to(bar2, { opacity: 1, duration: 0.2 });
-      gsap.to(bar3, { rotation: 0, y: 0, duration: 0.3 });
-    }
-  });
+  mobileBtn.addEventListener("click", () => toggleMenu(!isOpen));
 
   document.querySelectorAll(".mobile-nav-link").forEach((link) => {
-    link.addEventListener("click", () => {
-      isOpen = false;
-      mobileMenu.classList.add("hidden");
-      gsap.to(bar1, { rotation: 0, y: 0, duration: 0.3 });
-      gsap.to(bar2, { opacity: 1, duration: 0.2 });
-      gsap.to(bar3, { rotation: 0, y: 0, duration: 0.3 });
-    });
+    link.addEventListener("click", () => toggleMenu(false));
   });
 </script>

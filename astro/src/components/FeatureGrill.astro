@@ -8,10 +8,10 @@ const t = useTranslations(lang);
 <section id="feature-grill" class="relative py-12 md:py-24 overflow-hidden">
   <div class="max-w-7xl mx-auto px-6">
     <div class="grid md:grid-cols-2 gap-8 md:gap-16 items-center">
-      <div class="grill-image relative order-2 md:order-1">
+      <div class="reveal-left relative order-2 md:order-1">
         <div class="absolute -inset-4 bg-gradient-to-bl from-amber/10 to-transparent rounded-2xl blur-2xl"></div>
         <img
-          src="/images/grill-conversion.png"
+          src="/images/grill-conversion.webp"
           alt="Buqon DINE - Grill Conversion"
           width="800"
           height="338"
@@ -20,7 +20,7 @@ const t = useTranslations(lang);
           class="relative rounded-2xl w-full object-contain"
         />
       </div>
-      <div class="grill-text order-1 md:order-2">
+      <div class="reveal-right order-1 md:order-2">
         <span class="inline-block text-amber text-sm font-medium tracking-[0.2em] uppercase mb-4">
           02
         </span>
@@ -34,32 +34,3 @@ const t = useTranslations(lang);
     </div>
   </div>
 </section>
-
-<script>
-  import gsap from "gsap";
-  import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-  gsap.registerPlugin(ScrollTrigger);
-
-  gsap.from("#feature-grill .grill-text", {
-    x: 40,
-    opacity: 0,
-    duration: 0.7,
-    ease: "power2.out",
-    scrollTrigger: {
-      trigger: "#feature-grill",
-      start: "top 85%",
-    },
-  });
-
-  gsap.from("#feature-grill .grill-image", {
-    x: -40,
-    opacity: 0,
-    duration: 0.7,
-    ease: "power2.out",
-    scrollTrigger: {
-      trigger: "#feature-grill",
-      start: "top 85%",
-    },
-  });
-</script>

@@ -12,7 +12,7 @@ const t = useTranslations(lang);
   </div>
 
   <div class="relative max-w-4xl mx-auto px-6">
-    <div class="text-center mb-12" id="cta-header">
+    <div class="reveal text-center mb-12" id="cta-header">
       <h2 class="text-3xl md:text-5xl font-display font-bold text-text-heading leading-tight mb-6">
         {t("cta.title")}
       </h2>
@@ -25,7 +25,7 @@ const t = useTranslations(lang);
       id="inquiry-form"
       action="https://formsubmit.co/office@buqon.com"
       method="POST"
-      class="max-w-xl mx-auto bg-bg-card border border-border rounded-2xl p-8 md:p-10 shadow-2xl shadow-black/30"
+      class="reveal max-w-xl mx-auto bg-bg-card border border-border rounded-2xl p-8 md:p-10 shadow-2xl shadow-black/30"
     >
       <input type="hidden" name="_subject" value="Neue Anfrage über buqon.com" />
       <input type="hidden" name="_replyto" id="replyto-field" />
@@ -97,33 +97,6 @@ const t = useTranslations(lang);
 </section>
 
 <script>
-  import gsap from "gsap";
-  import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-  gsap.registerPlugin(ScrollTrigger);
-
-  gsap.from("#cta-header", {
-    y: 30,
-    opacity: 0,
-    duration: 0.6,
-    ease: "power2.out",
-    scrollTrigger: {
-      trigger: "#contact",
-      start: "top 85%",
-    },
-  });
-
-  gsap.from("#inquiry-form", {
-    y: 40,
-    opacity: 0,
-    duration: 0.6,
-    ease: "power2.out",
-    scrollTrigger: {
-      trigger: "#inquiry-form",
-      start: "top 90%",
-    },
-  });
-
   const form = document.getElementById("inquiry-form") as HTMLFormElement;
   const emailInput = document.getElementById("email") as HTMLInputElement;
   const replyToField = document.getElementById("replyto-field") as HTMLInputElement;

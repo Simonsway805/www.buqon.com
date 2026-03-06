@@ -8,7 +8,7 @@ const t = useTranslations(lang);
 <section id="features" class="relative pt-8 pb-12 md:pt-16 md:pb-24 overflow-hidden">
   <div class="max-w-7xl mx-auto px-6">
     <div class="grid md:grid-cols-2 gap-8 md:gap-16 items-center">
-      <div class="feature-text">
+      <div class="reveal-left">
         <span class="inline-block text-amber text-sm font-medium tracking-[0.2em] uppercase mb-4">
           01
         </span>
@@ -19,10 +19,10 @@ const t = useTranslations(lang);
           {t("feature.community.body")}
         </p>
       </div>
-      <div class="feature-image relative">
+      <div class="reveal-right relative">
         <div class="absolute -inset-4 bg-gradient-to-br from-amber/10 to-transparent rounded-2xl blur-2xl"></div>
         <img
-          src="/images/grillabend-mit-freunden.jpg"
+          src="/images/grillabend-mit-freunden.webp"
           alt="Buqon DINE - Grillen mit Freunden"
           width="800"
           height="600"
@@ -34,32 +34,3 @@ const t = useTranslations(lang);
     </div>
   </div>
 </section>
-
-<script>
-  import gsap from "gsap";
-  import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-  gsap.registerPlugin(ScrollTrigger);
-
-  gsap.from("#features .feature-text", {
-    x: -40,
-    opacity: 0,
-    duration: 0.7,
-    ease: "power2.out",
-    scrollTrigger: {
-      trigger: "#features",
-      start: "top 85%",
-    },
-  });
-
-  gsap.from("#features .feature-image", {
-    x: 40,
-    opacity: 0,
-    duration: 0.7,
-    ease: "power2.out",
-    scrollTrigger: {
-      trigger: "#features",
-      start: "top 85%",
-    },
-  });
-</script>

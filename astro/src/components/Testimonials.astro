@@ -8,7 +8,7 @@ const testimonials = [
   {
     name: "Karim",
     location: lang === "de" ? "Schweiz" : "Switzerland",
-    avatar: "/images/avatars/karim.jpg",
+    avatar: "/images/avatars/karim.webp",
     quote:
       lang === "de"
         ? "Absolut cooles Grill-Erlebnis mit Freunden. Nicht mehr nur ein Grillmeister, der Abseits steht während die Gäste warten, nein alle grillen und haben Spaß miteinander. Mein neues Geschenk, der Grilltisch ist eine absolute Bereicherung und eine meiner besten Anschaffungen für den Garten."
@@ -17,7 +17,7 @@ const testimonials = [
   {
     name: "Susanne",
     location: lang === "de" ? "Österreich" : "Austria",
-    avatar: "/images/avatars/susanne.jpg",
+    avatar: "/images/avatars/susanne.webp",
     quote:
       lang === "de"
         ? "BUQON ist jeden Cent wert. Wir nutzen ihn je nach Bedarf als praktischen Gartentisch, als Getränkekühler oder als Grilltisch für feine gesellige Abende. Was wir lieben: mit diesem Tisch ist es möglich, dass ALLE gleichzeitig grillen, essen und genießen."
@@ -30,15 +30,15 @@ const testimonials = [
   <div class="absolute inset-0 bg-gradient-to-b from-bg via-bg-surface/50 to-bg"></div>
 
   <div class="relative max-w-7xl mx-auto px-6">
-    <div class="text-center mb-12 opacity-0 translate-y-6" id="testimonials-header">
+    <div class="reveal text-center mb-12">
       <h2 class="text-3xl md:text-5xl font-display font-bold text-text-heading">
         {t("testimonials.title")}
       </h2>
     </div>
 
-    <div class="grid md:grid-cols-2 gap-8" id="testimonial-cards">
+    <div class="reveal-stagger grid md:grid-cols-2 gap-8">
       {testimonials.map((item) => (
-        <div class="testimonial-card opacity-0 translate-y-8 group relative bg-bg-card border border-border rounded-2xl p-8 md:p-10 transition-all duration-500 hover:border-amber/30 hover:shadow-lg hover:shadow-amber/5">
+        <div class="group relative bg-bg-card border border-border rounded-2xl p-8 md:p-10 transition-all duration-500 hover:border-amber/30 hover:shadow-lg hover:shadow-amber/5">
           <div class="absolute top-8 right-8 text-6xl text-amber/10 font-display leading-none select-none">
             &ldquo;
           </div>
@@ -75,33 +75,3 @@ const testimonials = [
     </div>
   </div>
 </section>
-
-<script>
-  import gsap from "gsap";
-  import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-  gsap.registerPlugin(ScrollTrigger);
-
-  gsap.to("#testimonials-header", {
-    y: 0,
-    opacity: 1,
-    duration: 0.6,
-    ease: "power2.out",
-    scrollTrigger: {
-      trigger: "#testimonials",
-      start: "top 92%",
-    },
-  });
-
-  gsap.to("#testimonial-cards .testimonial-card", {
-    y: 0,
-    opacity: 1,
-    duration: 0.6,
-    stagger: 0.15,
-    ease: "power2.out",
-    scrollTrigger: {
-      trigger: "#testimonial-cards",
-      start: "top 92%",
-    },
-  });
-</script>

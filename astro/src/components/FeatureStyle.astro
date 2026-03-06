@@ -5,28 +5,16 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 const images = [
-  {
-    src: "/images/grillen-am-tisch.jpg",
-    alt: "Grillen am Tisch",
-  },
-  {
-    src: "/images/grill-tisch-6-personen.jpg",
-    alt: "Grill Tisch 6 Personen",
-  },
-  {
-    src: "/images/gartentisch-grilleinsatz-6.jpg",
-    alt: "Gartentisch mit Grilleinsatz",
-  },
-  {
-    src: "/images/garten-tisch-integriert.jpg",
-    alt: "Garten Tisch mit integriertem Grill",
-  },
+  { src: "/images/grillen-am-tisch.webp", alt: "Grillen am Tisch" },
+  { src: "/images/grill-tisch-6-personen.webp", alt: "Grill Tisch 6 Personen" },
+  { src: "/images/gartentisch-grilleinsatz-6.webp", alt: "Gartentisch mit Grilleinsatz" },
+  { src: "/images/garten-tisch-integriert.webp", alt: "Garten Tisch mit integriertem Grill" },
 ];
 ---
 
 <section id="feature-style" class="relative py-12 md:py-24 overflow-hidden">
   <div class="max-w-7xl mx-auto px-6">
-    <div class="text-center max-w-3xl mx-auto mb-12">
+    <div class="reveal text-center max-w-3xl mx-auto mb-12">
       <span class="inline-block text-amber text-sm font-medium tracking-[0.2em] uppercase mb-4">
         03
       </span>
@@ -38,12 +26,9 @@ const images = [
       </p>
     </div>
 
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4" id="style-gallery">
-      {images.map((img, i) => (
-        <div
-          class="gallery-item relative group overflow-hidden rounded-xl aspect-[3/4]"
-          style={`--delay: ${i * 0.1}s`}
-        >
+    <div class="reveal-stagger grid grid-cols-2 md:grid-cols-4 gap-4">
+      {images.map((img) => (
+        <div class="relative group overflow-hidden rounded-xl aspect-[3/4]">
           <img
             src={img.src}
             alt={img.alt}
@@ -59,22 +44,3 @@ const images = [
     </div>
   </div>
 </section>
-
-<script>
-  import gsap from "gsap";
-  import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-  gsap.registerPlugin(ScrollTrigger);
-
-  gsap.from("#feature-style .gallery-item", {
-    y: 40,
-    opacity: 0,
-    duration: 0.5,
-    stagger: 0.1,
-    ease: "power2.out",
-    scrollTrigger: {
-      trigger: "#style-gallery",
-      start: "top 90%",
-    },
-  });
-</script>
