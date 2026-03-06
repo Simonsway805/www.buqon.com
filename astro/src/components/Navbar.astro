@@ -4,6 +4,8 @@ import { getLangFromUrl, useTranslations } from "@/i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+const isHome = Astro.url.pathname === `/${lang}/` || Astro.url.pathname === `/${lang}`;
+const anchor = (hash: string) => isHome ? hash : `/${lang}/${hash}`;
 ---
 
 <nav
@@ -18,13 +20,13 @@ const t = useTranslations(lang);
     </a>
 
     <div class="hidden md:flex items-center gap-8">
-      <a href="#features" class="nav-link text-sm tracking-wide text-text-muted hover:text-amber transition-colors duration-300">
+      <a href={anchor("#features")} class="nav-link text-sm tracking-wide text-text-muted hover:text-amber transition-colors duration-300">
         {t("nav.features")}
       </a>
-      <a href="#testimonials" class="nav-link text-sm tracking-wide text-text-muted hover:text-amber transition-colors duration-300">
+      <a href={anchor("#testimonials")} class="nav-link text-sm tracking-wide text-text-muted hover:text-amber transition-colors duration-300">
         {t("nav.testimonials")}
       </a>
-      <a href="#contact" class="nav-link text-sm tracking-wide text-text-muted hover:text-amber transition-colors duration-300">
+      <a href={anchor("#contact")} class="nav-link text-sm tracking-wide text-text-muted hover:text-amber transition-colors duration-300">
         {t("nav.contact")}
       </a>
     </div>
@@ -32,7 +34,7 @@ const t = useTranslations(lang);
     <div class="flex items-center gap-4">
       <LanguageSwitcher />
       <a
-        href="#contact"
+        href={anchor("#contact")}
         class="hidden sm:inline-flex items-center px-5 py-2.5 bg-amber text-bg font-semibold text-sm rounded-full hover:bg-amber-light transition-colors duration-300"
       >
         {t("nav.inquiry")}
@@ -54,17 +56,17 @@ const t = useTranslations(lang);
     class="md:hidden hidden bg-bg-surface/95 backdrop-blur-xl border-t border-border"
   >
     <div class="flex flex-col items-center gap-6 py-8">
-      <a href="#features" class="mobile-nav-link text-lg text-text-muted hover:text-amber transition-colors">
+      <a href={anchor("#features")} class="mobile-nav-link text-lg text-text-muted hover:text-amber transition-colors">
         {t("nav.features")}
       </a>
-      <a href="#testimonials" class="mobile-nav-link text-lg text-text-muted hover:text-amber transition-colors">
+      <a href={anchor("#testimonials")} class="mobile-nav-link text-lg text-text-muted hover:text-amber transition-colors">
         {t("nav.testimonials")}
       </a>
-      <a href="#contact" class="mobile-nav-link text-lg text-text-muted hover:text-amber transition-colors">
+      <a href={anchor("#contact")} class="mobile-nav-link text-lg text-text-muted hover:text-amber transition-colors">
         {t("nav.contact")}
       </a>
       <a
-        href="#contact"
+        href={anchor("#contact")}
         class="inline-flex items-center px-6 py-3 bg-amber text-bg font-semibold rounded-full"
       >
         {t("nav.inquiry")}
