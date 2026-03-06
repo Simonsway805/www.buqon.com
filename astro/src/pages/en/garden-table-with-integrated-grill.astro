@@ -1,0 +1,251 @@
+---
+import BlogLayout from "@/layouts/BlogLayout.astro";
+
+const carouselImages = [
+  { src: "https://www.buqon.com/wp-content/uploads/2022/02/Dine-00096.jpg", alt: "Buqon DINE Grill Table" },
+  { src: "https://www.buqon.com/wp-content/uploads/2022/02/Dine-00025.jpg", alt: "Buqon DINE Detail" },
+  { src: "https://www.buqon.com/wp-content/uploads/2022/02/Dine-00046.jpg", alt: "Buqon DINE Grill Grate" },
+  { src: "https://www.buqon.com/wp-content/uploads/2022/02/Dine-00077.jpg", alt: "Buqon DINE Wood Table" },
+  { src: "https://www.buqon.com/wp-content/uploads/2022/02/Dine-00082.jpg", alt: "Buqon DINE Side View" },
+  { src: "https://www.buqon.com/wp-content/uploads/2022/02/Dine-00089.jpg", alt: "Buqon DINE Close-up" },
+  { src: "https://www.buqon.com/wp-content/uploads/2022/02/Dine-00099.jpg", alt: "Buqon DINE Grill Pan" },
+  { src: "https://www.buqon.com/wp-content/uploads/2022/02/Dine-00101.jpg", alt: "Buqon DINE Assembly" },
+  { src: "https://www.buqon.com/wp-content/uploads/2022/02/Dine-00104.jpg", alt: "Buqon DINE Grill Insert" },
+  { src: "https://www.buqon.com/wp-content/uploads/2022/02/Dine-00123.jpg", alt: "Buqon DINE Table Top" },
+  { src: "https://www.buqon.com/wp-content/uploads/2022/02/Dine-00124.jpg", alt: "Buqon DINE Stainless Steel" },
+  { src: "https://www.buqon.com/wp-content/uploads/2022/02/Dine-00129.jpg", alt: "Buqon DINE Garden" },
+  { src: "https://www.buqon.com/wp-content/uploads/2022/02/Dine-00130.jpg", alt: "Buqon DINE Terrace" },
+  { src: "https://www.buqon.com/wp-content/uploads/2022/02/Dine-00131-e1747845978492.jpg", alt: "Buqon DINE BBQ Evening" },
+  { src: "https://www.buqon.com/wp-content/uploads/2022/02/Dine-00132.jpg", alt: "Buqon DINE Complete" },
+  { src: "https://www.buqon.com/wp-content/uploads/2022/02/Dine-00133.jpg", alt: "Buqon DINE Overview" },
+];
+---
+
+<BlogLayout
+  title="Garden Table with Integrated Grill: Buqon DINE"
+  description="This multifunctional garden table with integrated grill has it all and offers everything a grill master's heart desires."
+  heroImage="https://www.buqon.com/wp-content/uploads/2022/03/grillrezepte-grillen-mit-freunden-bbq-tisch.jpg"
+  publishDate="February 25, 2022"
+>
+  <p>
+    Who doesn't know the feeling: the grill master stands in the corner, back turned to the guests, spending the entire afternoon grilling food to perfection and serving it. Meanwhile, they often miss out themselves and can never quite please everyone. At the end of the day, only the cold leftovers remain. But not with Buqon DINE: the garden table with integrated grill. This table with grill insert offers everything you need for a cozy BBQ evening with friends. Because this multifunctional garden table truly has it all!
+  </p>
+
+  <!-- Image Carousel -->
+  <div class="not-prose my-10">
+    <div class="relative" id="carousel">
+      <div class="overflow-hidden rounded-2xl">
+        <div class="flex transition-transform duration-500 ease-out" id="carousel-track">
+          {carouselImages.map((img) => (
+            <div class="flex-shrink-0 w-full">
+              <img
+                src={img.src}
+                alt={img.alt}
+                class="w-full aspect-[4/3] object-cover"
+                loading="lazy"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+      <button
+        id="carousel-prev"
+        class="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-bg/70 backdrop-blur-sm border border-border flex items-center justify-center text-text hover:bg-amber hover:text-bg transition-colors"
+        aria-label="Previous image"
+      >
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+      <button
+        id="carousel-next"
+        class="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-bg/70 backdrop-blur-sm border border-border flex items-center justify-center text-text hover:bg-amber hover:text-bg transition-colors"
+        aria-label="Next image"
+      >
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+      <div class="flex justify-center gap-1.5 mt-4" id="carousel-dots">
+        {carouselImages.map((_, i) => (
+          <button
+            class:list={["w-2 h-2 rounded-full transition-colors", i === 0 ? "bg-amber" : "bg-border"]}
+            data-index={i}
+            aria-label={`Image ${i + 1}`}
+          />
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <h2>What Is the Buqon DINE Table?</h2>
+  <p>
+    Buqon DINE is a multifunctional outdoor table: garden table, grill, and drink cooler all in one. At its core, it's a patio table that transforms into a sociable charcoal grill table with a grill insert in the center. A table with BBQ grill. How does it work? More on that below.
+  </p>
+  <p>
+    But that's not all. The versatile garden table with integrated grill has yet another feature. There's the option to insert an ice bucket to keep drinks cool right at the table. So you virtually never have to leave the table — neither to keep an eye on the food nor to grab drinks from the fridge.
+  </p>
+
+  <!-- Wistia Video -->
+  <div class="not-prose my-10">
+    <div class="relative rounded-2xl overflow-hidden aspect-video bg-bg-card">
+      <script src="https://fast.wistia.com/embed/medias/6menz02dih.jsonp" async></script>
+      <script src="https://fast.wistia.com/assets/external/E-v1.js" async></script>
+      <div class="wistia_responsive_padding" style="padding:56.25% 0 0 0;position:relative;">
+        <div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;">
+          <div class="wistia_embed wistia_async_6menz02dih seo=true videoFoam=true" style="height:100%;position:relative;width:100%;">
+            <div class="wistia_swatch" style="height:100%;left:0;opacity:0;overflow:hidden;position:absolute;top:0;transition:opacity 200ms;width:100%;">
+              <img src="https://fast.wistia.com/embed/medias/6menz02dih/swatch" style="filter:blur(5px);height:100%;object-fit:contain;width:100%;" alt="Buqon DINE Video" aria-hidden="true" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2>How Does a Garden Table with Built-In Grill Work?</h2>
+  <p>
+    Unlike a classic freestanding grill, the BBQ grill is integrated directly into the dining table. This presents a special challenge in development and implementation on multiple levels. The <a href="/en/garden-table-conversion/">conversion</a> and handling at home, however, are child's play.
+  </p>
+  <p>
+    A lot happens under the garden table: people cross their legs, stretch them out, dogs and cats walk underneath. The risk of burns is high, which is why the Buqon DINE's charcoal container features a temperature-neutral three-pan system on the outer wall. The fireproof pan inserted into the tabletop is the heart of the table. Here, the charcoal radiates heat exclusively upward. This fire bowl containing the charcoal can also be lifted out completely. In general, inserting, removing, and heating the BBQ grill in the table is very easy thanks to the side handles. Find a <a href="/en/garden-table-conversion/">step-by-step guide</a> here.
+  </p>
+  <p>
+    The grill grate is also flexibly removable and attachable, ensuring thorough and easy cleaning. Additionally, a drip pan ensures that fat from grilling doesn't drip onto the charcoal.
+  </p>
+  <img src="https://www.buqon.com/wp-content/uploads/2022/03/gartentisch-mit-grilleinsatz-holz-6-personen-1024x768.jpg" alt="Garden table with grill insert" loading="lazy" />
+
+  <h2>Grilling with Friends: Togetherness at the Center</h2>
+  <p>
+    With the central grill at the table, the evening with friends becomes truly communal. Grilling regains its original character — sitting around the fire and connecting. No one needs to leave the table, conversations aren't interrupted, and everyone has enough space to prepare their own food.
+  </p>
+  <p>
+    The idea of creating something together also comes to the forefront. Unlike the classic grill in the corner, guests are not served with the Buqon DINE grill table. On the contrary: everyone prepares and eats their food equally and simultaneously.
+  </p>
+
+  <h2>Why Choose a Table with Integrated Grill?</h2>
+
+  <h3>No More Space Problems on the Terrace</h3>
+  <p>
+    Where to put the grill on the patio? Whether it's a large gas grill or a kettle grill, a standalone grill takes up considerable space. This question becomes irrelevant with the Buqon DINE — the grill is already in the table! On the contrary: by using the Buqon DINE table as both a garden table and a grill table, you reclaim that space. This space saving is worth its weight in gold — not just on balconies and terraces, but also in the garden. A herb garden would certainly look great in the freed-up corner.
+  </p>
+  <img src="https://www.buqon.com/wp-content/uploads/2022/03/gartentisch-set-grill-integriert-multifunktional-1024x768.jpg" alt="Garden table set grill integrated multifunctional" loading="lazy" />
+
+  <h3>Eat Together at the Same Time</h3>
+  <p>
+    Up to 8 people can sit at this multifunctional outdoor table. Everyone prepares their own food — making the togetherness and conversation the center of both cooking and eating.
+  </p>
+
+  <h3>Plenty of Space at the Grill Table</h3>
+  <p>
+    Space for up to 8 people, not only around the garden table but also at the grill grate. The grill is large enough that everyone gets their fill. After grilling, the pan with the charcoal can simply be lifted out of the table. Buqon DINE then becomes an elegant garden table with plenty of space for desserts.
+  </p>
+
+  <h3>Different Doneness Levels? No Problem!</h3>
+  <p>
+    With the Buqon DINE, everyone is their own grill master. A personal pair of grill tongs gives each person the freedom to choose their food and grill it exactly as long as they like. The intensity of flavor is as unique as the person themselves — and with Buqon DINE, this individuality is effortlessly possible. This also eliminates the constant question of what should go on the grill next. With the central grill at the table, everyone has their own spot by the fire.
+  </p>
+  <p>
+    The integrated grill function of the DINE table thus offers something that has never existed before: eating together in company while enjoying completely different dishes. Everyone, just as they please.
+  </p>
+
+  <h3>The Best Grill Grate</h3>
+  <p>
+    Not just the table itself, but above all the heart of the table: the grill insert and grate feature remarkable qualities. The grill grate was designed and developed so that people at the table aren't exposed to the heat of the coals. After all, the charcoal should only cook the food. Furthermore, the fat produced during grilling doesn't drip into the grill pan and onto the charcoal, but into a separate collection pan. The stainless steel grill grate is durable, stable, and made from food-safe, rust-free stainless steel. By choosing the Buqon DINE table, you're opting for the best grill grate in this segment:
+  </p>
+  <ul>
+    <li>Very long lifespan</li>
+    <li>Removable angle inserts</li>
+    <li>Dishwasher safe</li>
+    <li>No dripping fat on hot charcoal</li>
+  </ul>
+  <img src="https://www.buqon.com/wp-content/uploads/2022/03/garten-tisch-mit-integriertem-grill-kaufen-1024x768.jpg" alt="Garden table with integrated grill" loading="lazy" />
+
+  <h2>All Benefits of the Buqon DINE Garden Table with Grill Insert at a Glance</h2>
+  <p>In summary, the stainless steel outdoor table DINE offers several advantages compared to a conventional grill:</p>
+  <ul>
+    <li><strong>Eat Together</strong>
+      <ul>
+        <li>Sit together at the table — no one has to stand up</li>
+        <li>Simultaneous eating possible — no one stands at the grill</li>
+        <li>No one feels left out: a harmonious BBQ day</li>
+        <li>Everyone grills at their own pace — different doneness levels</li>
+        <li>Individual space for different grilled items</li>
+        <li>Grill station central and conveniently accessible</li>
+        <li>Table with space for up to 8 people</li>
+      </ul>
+    </li>
+    <li><strong>Space-Saving</strong>
+      <ul>
+        <li>Garden table, grill table, and drink cooler in one</li>
+        <li>Space saving on balcony, terrace, and in the garden: no grill in addition to a garden table</li>
+      </ul>
+    </li>
+    <li><strong>Multifunctional</strong>
+      <ul>
+        <li>Grill or ice insert used as needed. Otherwise a premium garden table</li>
+      </ul>
+    </li>
+    <li><strong>Easiest Grill Cleaning</strong>
+      <ul>
+        <li>Removable grill grate: Simply clean by hand or in the dishwasher</li>
+        <li>No fat in the embers: Drip pan for grill fat</li>
+      </ul>
+    </li>
+    <li><strong>Made in Europe</strong> with the highest quality materials</li>
+    <li><strong><a href="/en/grilling-safety-tips/">Grilling Safety</a></strong> comes first
+      <ul>
+        <li>Charcoal is pre-heated in the grill pan, then inserted, and can be removed after grilling</li>
+        <li>Outer shell stays cool thanks to the 3-pan system</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h2>Related Articles</h2>
+  <div class="not-prose my-8 grid gap-6 sm:grid-cols-2">
+    <a href="/en/garden-table-conversion/" class="group block rounded-2xl border border-border bg-bg-card overflow-hidden transition-all hover:border-amber/30 hover:shadow-lg hover:shadow-amber/5">
+      <img src="https://www.buqon.com/wp-content/uploads/2022/02/gartentisch-mit-grill-in-der-mitte-anleitung-umbau.jpg" alt="Garden table with grill conversion guide" class="w-full aspect-[16/10] object-cover" loading="lazy" />
+      <div class="p-5">
+        <p class="text-xs text-text-muted mb-2">February 28, 2022</p>
+        <h3 class="text-lg font-semibold text-text-heading group-hover:text-amber transition-colors">Multifunctional Grill and Garden Table: Easy to Convert</h3>
+        <p class="text-sm text-text-muted mt-2">What could be better than grilling with friends in the garden on a sunny summer day?</p>
+      </div>
+    </a>
+    <a href="/en/grilling-safety-tips/" class="group block rounded-2xl border border-border bg-bg-card overflow-hidden transition-all hover:border-amber/30 hover:shadow-lg hover:shadow-amber/5">
+      <img src="https://www.buqon.com/wp-content/uploads/2022/03/langlebiger-grosser-grillrost-im-tisch-integriert.jpg" alt="Durable large grill grate integrated in table" class="w-full aspect-[16/10] object-cover" loading="lazy" />
+      <div class="p-5">
+        <p class="text-xs text-text-muted mb-2">February 25, 2022</p>
+        <h3 class="text-lg font-semibold text-text-heading group-hover:text-amber transition-colors">7 Grilling Safety Tips</h3>
+        <p class="text-sm text-text-muted mt-2">What could be better than grilling with friends in the garden on a sunny summer day?</p>
+      </div>
+    </a>
+  </div>
+</BlogLayout>
+
+<script>
+  const track = document.getElementById("carousel-track") as HTMLElement;
+  const dots = document.querySelectorAll("#carousel-dots button");
+  const total = dots.length;
+  let current = 0;
+
+  function goTo(index: number) {
+    current = ((index % total) + total) % total;
+    track.style.transform = `translateX(-${current * 100}%)`;
+    dots.forEach((d, i) => {
+      d.classList.toggle("bg-amber", i === current);
+      d.classList.toggle("bg-border", i !== current);
+    });
+  }
+
+  document.getElementById("carousel-prev")!.addEventListener("click", () => goTo(current - 1));
+  document.getElementById("carousel-next")!.addEventListener("click", () => goTo(current + 1));
+  dots.forEach((dot) => {
+    dot.addEventListener("click", () => goTo(Number((dot as HTMLElement).dataset.index)));
+  });
+
+  let autoplay = setInterval(() => goTo(current + 1), 4000);
+  document.getElementById("carousel")!.addEventListener("pointerenter", () => clearInterval(autoplay));
+  document.getElementById("carousel")!.addEventListener("pointerleave", () => {
+    autoplay = setInterval(() => goTo(current + 1), 4000);
+  });
+</script>

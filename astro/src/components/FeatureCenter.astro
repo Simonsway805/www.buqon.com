@@ -1,0 +1,62 @@
+---
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<section id="features" class="relative pt-12 pb-20 md:pt-16 md:pb-24 overflow-hidden">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid md:grid-cols-2 gap-16 items-center">
+      <div class="feature-text">
+        <span class="inline-block text-amber text-sm font-medium tracking-[0.2em] uppercase mb-4">
+          01
+        </span>
+        <h2 class="text-3xl md:text-5xl font-display font-bold text-text-heading leading-tight mb-6">
+          {t("feature.community.title")}
+        </h2>
+        <p class="text-lg text-text-muted leading-relaxed">
+          {t("feature.community.body")}
+        </p>
+      </div>
+      <div class="feature-image relative">
+        <div class="absolute -inset-4 bg-gradient-to-br from-amber/10 to-transparent rounded-2xl blur-2xl"></div>
+        <img
+          src="https://www.buqon.com/wp-content/uploads/2022/03/grillabend-mit-freunden-tisch-mit-grill-gartentisch-holz.jpg"
+          alt="Buqon DINE - Grillen mit Freunden"
+          class="relative rounded-2xl w-full aspect-[4/3] object-cover shadow-2xl shadow-black/40"
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  gsap.from("#features .feature-text", {
+    x: -40,
+    opacity: 0,
+    duration: 0.7,
+    ease: "power2.out",
+    scrollTrigger: {
+      trigger: "#features",
+      start: "top 85%",
+    },
+  });
+
+  gsap.from("#features .feature-image", {
+    x: 40,
+    opacity: 0,
+    duration: 0.7,
+    ease: "power2.out",
+    scrollTrigger: {
+      trigger: "#features",
+      start: "top 85%",
+    },
+  });
+</script>

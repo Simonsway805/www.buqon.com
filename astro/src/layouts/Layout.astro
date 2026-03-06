@@ -1,0 +1,55 @@
+---
+import "@/styles/global.css";
+import { getLangFromUrl } from "@/i18n/utils";
+import CookieConsent from "@/components/CookieConsent.astro";
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Buqon DINE – Multifunktionaler Gartentisch mit Grilleinsatz" } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+---
+
+<!doctype html>
+<html lang={lang} class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>{title}</title>
+  </head>
+  <body class="bg-bg text-text antialiased overflow-x-hidden">
+    <slot />
+    <CookieConsent />
+
+    <script>
+      import gsap from "gsap";
+      import { ScrollTrigger } from "gsap/ScrollTrigger";
+      import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+
+      gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", (e) => {
+          e.preventDefault();
+          const href = (e.currentTarget as HTMLAnchorElement).getAttribute("href");
+          if (!href) return;
+          gsap.to(window, {
+            duration: 1,
+            scrollTo: { y: href, offsetY: 80 },
+            ease: "power2.inOut",
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

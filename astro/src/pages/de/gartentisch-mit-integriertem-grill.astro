@@ -1,0 +1,263 @@
+---
+import BlogLayout from "@/layouts/BlogLayout.astro";
+
+const carouselImages = [
+  { src: "https://www.buqon.com/wp-content/uploads/2022/02/Dine-00096.jpg", alt: "Buqon DINE Grilltisch" },
+  { src: "https://www.buqon.com/wp-content/uploads/2022/02/Dine-00025.jpg", alt: "Buqon DINE Detail" },
+  { src: "https://www.buqon.com/wp-content/uploads/2022/02/Dine-00046.jpg", alt: "Buqon DINE Grillrost" },
+  { src: "https://www.buqon.com/wp-content/uploads/2022/02/Dine-00077.jpg", alt: "Buqon DINE Holztisch" },
+  { src: "https://www.buqon.com/wp-content/uploads/2022/02/Dine-00082.jpg", alt: "Buqon DINE Seitenansicht" },
+  { src: "https://www.buqon.com/wp-content/uploads/2022/02/Dine-00089.jpg", alt: "Buqon DINE Nahaufnahme" },
+  { src: "https://www.buqon.com/wp-content/uploads/2022/02/Dine-00099.jpg", alt: "Buqon DINE Grillwanne" },
+  { src: "https://www.buqon.com/wp-content/uploads/2022/02/Dine-00101.jpg", alt: "Buqon DINE Aufbau" },
+  { src: "https://www.buqon.com/wp-content/uploads/2022/02/Dine-00104.jpg", alt: "Buqon DINE Grilleinsatz" },
+  { src: "https://www.buqon.com/wp-content/uploads/2022/02/Dine-00123.jpg", alt: "Buqon DINE Tischplatte" },
+  { src: "https://www.buqon.com/wp-content/uploads/2022/02/Dine-00124.jpg", alt: "Buqon DINE Edelstahl" },
+  { src: "https://www.buqon.com/wp-content/uploads/2022/02/Dine-00129.jpg", alt: "Buqon DINE Garten" },
+  { src: "https://www.buqon.com/wp-content/uploads/2022/02/Dine-00130.jpg", alt: "Buqon DINE Terrasse" },
+  { src: "https://www.buqon.com/wp-content/uploads/2022/02/Dine-00131-e1747845978492.jpg", alt: "Buqon DINE Grillabend" },
+  { src: "https://www.buqon.com/wp-content/uploads/2022/02/Dine-00132.jpg", alt: "Buqon DINE komplett" },
+  { src: "https://www.buqon.com/wp-content/uploads/2022/02/Dine-00133.jpg", alt: "Buqon DINE Übersicht" },
+];
+---
+
+<BlogLayout
+  title="Gartentisch mit integriertem Grill: Buqon DINE"
+  description="Dieser multifunktionale Gartentisch mit integriertem Grill hat es in sich und bietet alles, was das Grill-Meister-Herz höher schlagen lässt."
+  heroImage="https://www.buqon.com/wp-content/uploads/2022/03/grillrezepte-grillen-mit-freunden-bbq-tisch.jpg"
+  publishDate="25. Februar 2022"
+>
+  <p>
+    Wer kennt es nicht: Der Grillmeister steht in der Ecke, mit dem Rücken zu den Gästen und ist den ganzen Nachmittag damit beschäftigt Grillgut auf die perfekte Garstufe zu grillen und zu servieren. Dabei kommt er oft selbst viel zu kurz und kann es dem einen oder anderen leider nicht recht machen. Am Ende des Tages bleiben ihm oder ihr nur die meist bereits kalten Reste. Doch nicht mit Buqon DINE: Dem Gartentisch mit integriertem Grill. Der Tisch mit Grilleinsatz bietet alles, was das Herz für einen gemütlichen Grillabend mit Freunden höher schlagen lässt. Denn dieser multifunktionale Gartentisch hat es in der Tat in sich!
+  </p>
+
+  <!-- Image Carousel -->
+  <div class="not-prose my-10">
+    <div class="relative" id="carousel">
+      <div class="overflow-hidden rounded-2xl">
+        <div class="flex transition-transform duration-500 ease-out" id="carousel-track">
+          {carouselImages.map((img) => (
+            <div class="flex-shrink-0 w-full">
+              <img
+                src={img.src}
+                alt={img.alt}
+                class="w-full aspect-[4/3] object-cover"
+                loading="lazy"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+      <button
+        id="carousel-prev"
+        class="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-bg/70 backdrop-blur-sm border border-border flex items-center justify-center text-text hover:bg-amber hover:text-bg transition-colors"
+        aria-label="Vorheriges Bild"
+      >
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+      <button
+        id="carousel-next"
+        class="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-bg/70 backdrop-blur-sm border border-border flex items-center justify-center text-text hover:bg-amber hover:text-bg transition-colors"
+        aria-label="Nächstes Bild"
+      >
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+      <div class="flex justify-center gap-1.5 mt-4" id="carousel-dots">
+        {carouselImages.map((_, i) => (
+          <button
+            class:list={["w-2 h-2 rounded-full transition-colors", i === 0 ? "bg-amber" : "bg-border"]}
+            data-index={i}
+            aria-label={`Bild ${i + 1}`}
+          />
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <h2>Was ist der Buqon DINE Tisch mit integriertem Grill?</h2>
+  <p>
+    Buqon DINE ist ein multifunktionaler Outdoor-Tisch: Gartentisch, Griller und Getränkekühler in einem. Grundsätzlich handelt es sich beim Buqon DINE um einen Terrassentisch, der mittels einem Grilleinsatz in der Mitte zu einem geselligen Holzkohlegrill-Tisch verwandelt wird. Also ein Tisch mit BBQ Grill. Wie das? Dazu etwas unten mehr.
+  </p>
+  <p>
+    Doch dem nicht genug. Der vielfältige Gartentisch mit integriertem Grill verfügt über ein weiteres Feature. Es gibt die Möglichkeit eine Eiswanne einzusetzen, um Getränke kühl zu stellen. Der Tisch muss also quasi nicht mehr verlassen werden. Weder zum Grillgut im Auge behalten und nachlegen, noch um Getränke aus dem Kühlschrank zu holen.
+  </p>
+
+  <!-- Wistia Video -->
+  <div class="not-prose my-10">
+    <div class="relative rounded-2xl overflow-hidden aspect-video bg-bg-card">
+      <script src="https://fast.wistia.com/embed/medias/6menz02dih.jsonp" async></script>
+      <script src="https://fast.wistia.com/assets/external/E-v1.js" async></script>
+      <div class="wistia_responsive_padding" style="padding:56.25% 0 0 0;position:relative;">
+        <div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;">
+          <div class="wistia_embed wistia_async_6menz02dih seo=true videoFoam=true" style="height:100%;position:relative;width:100%;">
+            <div class="wistia_swatch" style="height:100%;left:0;opacity:0;overflow:hidden;position:absolute;top:0;transition:opacity 200ms;width:100%;">
+              <img src="https://fast.wistia.com/embed/medias/6menz02dih/swatch" style="filter:blur(5px);height:100%;object-fit:contain;width:100%;" alt="Buqon DINE Video" aria-hidden="true" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2>Wie funktioniert ein Gartentisch mit eingebetteter Grillfunktion?</h2>
+  <p>
+    Anders, als bei einem klassischen, freistehenden Grill befindet sich der BBQ Grill direkt am beziehungsweise integriert in den Esstisch. Dies bedeutet bei der Entwicklung und Umsetzung eine besondere Herausforderung auf mehreren Ebenen. Der <a href="/de/gartentisch-umbauen/">Umbau</a> und das Handling daheim hingegen sind kinderleicht.
+  </p>
+  <p>
+    Unter dem Gartentisch spielt sich oft einiges ab: Man überschlägt die Beine, streckt sie aus, der Hund oder die Katze laufen unter dem Tisch hindurch. Die Verbrennungsgefahr ist hoch, weshalb der Behälter der Kohle des Buqon DINE Gartentisch mit integriertem Grill über ein an der Außenwand temperatur neutrales Drei-Wannen-System verfügt. Die in die Tischplatte eingesetzte, feuerfeste Wanne ist das Herzstück des Tisches. Hier gibt die Kohle Hitze ausschließlich nach oben ab. Diese Feuerschale, in welcher sich die Grillkohle befindet, lässt sich außerdem, samt der Kohle, ausheben. Generell ist das Einsetzen, Herausheben und Anheizen des BBQ Grills im Tisch durch die seitlichen Griffe ganz einfach. Finde hier eine <a href="/de/gartentisch-umbauen/">Schritt für Schritt Anleitung</a> dazu.
+  </p>
+  <p>
+    Das Grillgitter ist ebenfalls flexibel abnehmbar und aufsetzbar. So ist eine lückenlose und einfache Reinigung gewährleistet. Außerdem ist durch ein Auffangbecken gewährleistet, dass das beim Grillen abtropfende Fett nicht in die Kohle abfließt.
+  </p>
+  <img
+    src="https://www.buqon.com/wp-content/uploads/2022/03/gartentisch-mit-grilleinsatz-holz-6-personen-1024x768.jpg"
+    alt="Gartentisch mit Grilleinsatz Holz 6 Personen"
+    loading="lazy"
+  />
+
+  <h2>Grillen mit Freunden: Das Miteinander steht im Mittelpunkt</h2>
+  <p>
+    Mit dem zentralen Grill am Tisch findet der Abend mit Freunden gemeinsam statt. Das Grillen gewinnt dadurch seinen ursprünglichen Charakter wieder – dem des um dem Feuer sitzen und sich austauschen. Ganz ohne dass jemand den Tisch verlassen muss, um nach dem Grillgut zu sehen. So werden Gespräche nicht unterbrochen, das Grillgut bleibt immer unter Beobachtung und jeder hat genügend Platz sein Essen direkt selbst zuzubereiten.
+  </p>
+  <p>
+    Dabei gelangt auch der Gedanke gemeinsam etwas zu kreieren in den Vordergrund. Im Gegensatz zum klassischen Griller in der Ecke werden mit dem Buqon DINE Grilltisch die Gäste nicht bedient. Im Gegenteil: Gleichberechtigt und zeitgleich wird das Essen zubereitet und gegessen.
+  </p>
+
+  <h2>Warum für einen Tisch mit integriertem Grill entscheiden?</h2>
+
+  <h3>Endlich kein Platzmangel mehr auf der Terrasse</h3>
+  <p>
+    Wer kennt es nicht. Die Große Frage: Wohin mit dem Griller auf der Terrasse? Egal ob großer Gasgrill oder Kugelgrill: Ein Griller nimmt auf Balkon und Terrasse einiges an Platz ein. Diese Frage erübrigt sich mit dem im Tisch integrierten Grill. Denn der Buqon DINE nimmt keinen zusätzlichen Platz ein! Im Gegenteil: Durch die Option den Buqon DINE Tisch sowohl als Garten- als auch als Grilltisch zu nutzen gewinnt man eben diese Fläche wieder zurück. Diese Platzersparnis ist nicht nur auf Balkonen und Terrassen, sondern auch im Garten Gold wert. In der gewonnen Ecke würde ein Kräuterbeet sicherlich gut aussehen.
+  </p>
+  <img
+    src="https://www.buqon.com/wp-content/uploads/2022/03/gartentisch-set-grill-integriert-multifunktional-1024x768.jpg"
+    alt="Gartentisch Set Grill integriert multifunktional"
+    loading="lazy"
+  />
+
+  <h3>Gemeinsam zur selben Zeit essen</h3>
+  <p>
+    Bis zu 8 Personen finden an diesem multifunktionalen Outdoor-Tisch Platz. Das Grillgut wird von jeder Person selbst zubereitet – wodurch das Miteinander und damit die Gespräche bei der Zubereitung als auch beim Essen selbst im Mittelpunkt stehen.
+  </p>
+
+  <h3>Genügend Platz am Tisch mit Grill</h3>
+  <p>
+    Platz für bis zu 8 Personen, nicht nur um den Gartentisch, sondern auch am Grillrost. Der Grill ist groß genug, dass alle satt werden. Nach dem Grillen kann die Wanne samt der Kohle ganz simpel aus dem Tisch gehoben werden. Anschließend wird Buqon DINE zu einem edlen Gartentisch. Nun ist genügend Platz um die Nachspeisen bereit zu stellen.
+  </p>
+
+  <h3>Unterschiedliche Garstufen? Kein Problem!</h3>
+  <p>
+    Mit dem Buqon DINE Gartentisch mit Grill ist jeder sein eigener Grillmeister. Eine persönliche Grillzange gibt jedem am Tisch die Möglichkeit sein Grillgut selbst auszuwählen und so lange am Grill garen zu lassen, wie er/sie möchte. Intensität des Geschmacks ist so einzigartig wie die Person selbst – und mit Buqon DINE ist diese Individualität problemlos möglich. Damit fällt auch die stetige Frage weg, was als nächstes auf den Grill soll. Durch den zentralen Grill am Tisch hat jeder seinen eigenen Platz am Feuer.
+  </p>
+  <p>
+    Die integrierte Grillfunktion des DINE Tisches bietet demnach eine Möglichkeit die so noch nie da war: Miteinander in Gesellschaft Essen und doch ganz unterschiedliches zu sich zu nehmen. Jeder, so wie er beliebt.
+  </p>
+
+  <h3>Der beste Grillrost</h3>
+  <p>
+    Nicht nur der Tisch selbst, sondern allem voran das Herzstück des Tisches: der Grilleinsatz und -rost weisen tolle Besonderheiten auf. So wurde der Grillrost dahingehend konzipiert und entwickelt, dass die Personen am Tisch nicht von der Hitze der Kohle angestrahlt werden. Die Grillkohle soll ja schließlich lediglich das Grillgut garen. Darüber hinaus läuft das beim Grillen entstehende Fett seitlich nicht in die Grillwanne und damit auf die Kohle, sondern in eine gesonderte Auffangwanne. Der Edelstahl Grillrost ist langlebig, stabil und aus lebensmittelechtem, rostfreien Edelstahl. Mit der Wahl des Buqon DINE Tischs setzt du also auf den besten Grillrost in diesem Segment:
+  </p>
+  <ul>
+    <li>Sehr lange Lebensdauer</li>
+    <li>Herausnehmbare Winkel-Einlagen</li>
+    <li>Spülmaschinengeeignet</li>
+    <li>Kein tropfendes Fett auf heiße Holzkohle</li>
+  </ul>
+  <img
+    src="https://www.buqon.com/wp-content/uploads/2022/03/garten-tisch-mit-integriertem-grill-kaufen-1024x768.jpg"
+    alt="Garten-Tisch mit integriertem Grill kaufen"
+    loading="lazy"
+  />
+
+  <h2>Alle Vorteile des Buqon DINE Gartentisch mit Grilleinsatz auf einen Blick</h2>
+  <p>Zusammengefasst verfügt der Edelstahl-Outdoortisch DINE über einige Vorteile im Vergleich zu einem herkömmlichen Grill:</p>
+  <ul>
+    <li><strong>Gemeinsam Essen</strong>
+      <ul>
+        <li>Gemeinsam am Tisch sitzen – keiner muss aufstehen</li>
+        <li>Zeitgleiches Essen möglich – niemand steht am Griller</li>
+        <li>Keiner fühlt sich ausgeschlossen: ein harmonischer Grilltag</li>
+        <li>Jeder grillt in seinem Tempo – unterschiedliche Garstufen</li>
+        <li>Individueller Platz für unterschiedliches Grillgut</li>
+        <li>Grillplatz zentral und bequem erreichbar</li>
+        <li>Tisch mit Platz bis zu 8 Personen</li>
+      </ul>
+    </li>
+    <li><strong>Platzsparend</strong>
+      <ul>
+        <li>Gartentisch, Grilltisch und Getränkekühler in einem</li>
+        <li>Platzersparnis auf Balkon, Terrasse und im Garten: kein Grill zusätzlich zu einem Gartentisch</li>
+      </ul>
+    </li>
+    <li><strong>Multifunktional</strong>
+      <ul>
+        <li>Grill- oder auch Eis-Einlage wird bei Gebrauch eingesetzt. Andernfalls ein hochwertiger Gartentisch</li>
+      </ul>
+    </li>
+    <li><strong>Einfachste Reinigung des Grills</strong>
+      <ul>
+        <li>Grillrost abnehmbar: Einfach mit Hand oder im Geschirrspüler reinigen</li>
+        <li>Kein Fett in der Glut: Abtropfbecken für Grillfett</li>
+      </ul>
+    </li>
+    <li><strong>Herstellung in Europa</strong> mit hochwertigsten Materialien</li>
+    <li><strong><a href="/de/sicherheit-beim-grillen/">Sicherheit beim Grillen</a></strong> an erster Stelle
+      <ul>
+        <li>Kohle wird in Grillwanne vorab erhitzt, dann eingesetzt und kann nach dem Grillen herausgehoben werden</li>
+        <li>Außenschale wird dank 3-Wannen-System nicht heiß</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h2>Verwandte Artikel</h2>
+  <div class="not-prose my-8 grid gap-6 sm:grid-cols-2">
+    <a href="/de/gartentisch-umbauen/" class="group block rounded-2xl border border-border bg-bg-card overflow-hidden transition-all hover:border-amber/30 hover:shadow-lg hover:shadow-amber/5">
+      <img src="https://www.buqon.com/wp-content/uploads/2022/02/gartentisch-mit-grill-in-der-mitte-anleitung-umbau.jpg" alt="Gartentisch mit Grill in der Mitte Anleitung Umbau" class="w-full aspect-[16/10] object-cover" loading="lazy" />
+      <div class="p-5">
+        <p class="text-xs text-text-muted mb-2">28. Februar 2022</p>
+        <h3 class="text-lg font-semibold text-text-heading group-hover:text-amber transition-colors">Multifunktionaler Grill- und Gartentisch: kinderleicht umbauen</h3>
+        <p class="text-sm text-text-muted mt-2">Was gibt es schöneres als an einem sonnigen Sommertag mit Freunden im Garten zu Grillen?</p>
+      </div>
+    </a>
+    <a href="/de/sicherheit-beim-grillen/" class="group block rounded-2xl border border-border bg-bg-card overflow-hidden transition-all hover:border-amber/30 hover:shadow-lg hover:shadow-amber/5">
+      <img src="https://www.buqon.com/wp-content/uploads/2022/03/langlebiger-grosser-grillrost-im-tisch-integriert.jpg" alt="Langlebiger großer Grillrost im Tisch integriert" class="w-full aspect-[16/10] object-cover" loading="lazy" />
+      <div class="p-5">
+        <p class="text-xs text-text-muted mb-2">25. Februar 2022</p>
+        <h3 class="text-lg font-semibold text-text-heading group-hover:text-amber transition-colors">7 Tipps Sicherheit beim Grillen</h3>
+        <p class="text-sm text-text-muted mt-2">Was gibt es schöneres als an einem sonnigen Sommertag mit Freunden im Garten zu Grillen?</p>
+      </div>
+    </a>
+  </div>
+</BlogLayout>
+
+<script>
+  const track = document.getElementById("carousel-track") as HTMLElement;
+  const dots = document.querySelectorAll("#carousel-dots button");
+  const total = dots.length;
+  let current = 0;
+
+  function goTo(index: number) {
+    current = ((index % total) + total) % total;
+    track.style.transform = `translateX(-${current * 100}%)`;
+    dots.forEach((d, i) => {
+      d.classList.toggle("bg-amber", i === current);
+      d.classList.toggle("bg-border", i !== current);
+    });
+  }
+
+  document.getElementById("carousel-prev")!.addEventListener("click", () => goTo(current - 1));
+  document.getElementById("carousel-next")!.addEventListener("click", () => goTo(current + 1));
+  dots.forEach((dot) => {
+    dot.addEventListener("click", () => goTo(Number((dot as HTMLElement).dataset.index)));
+  });
+
+  let autoplay = setInterval(() => goTo(current + 1), 4000);
+  document.getElementById("carousel")!.addEventListener("pointerenter", () => clearInterval(autoplay));
+  document.getElementById("carousel")!.addEventListener("pointerleave", () => {
+    autoplay = setInterval(() => goTo(current + 1), 4000);
+  });
+</script>

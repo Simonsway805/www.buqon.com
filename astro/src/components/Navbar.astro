@@ -1,0 +1,128 @@
+---
+import LanguageSwitcher from "./LanguageSwitcher.astro";
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<nav
+  id="navbar"
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
+>
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href={`/${lang}/`} class="flex items-center gap-2 group">
+      <span class="text-2xl font-bold tracking-tight text-text-heading font-display group-hover:text-amber transition-colors duration-300">
+        BUQON
+      </span>
+    </a>
+
+    <div class="hidden md:flex items-center gap-8">
+      <a href="#features" class="nav-link text-sm tracking-wide text-text-muted hover:text-amber transition-colors duration-300">
+        {t("nav.features")}
+      </a>
+      <a href="#testimonials" class="nav-link text-sm tracking-wide text-text-muted hover:text-amber transition-colors duration-300">
+        {t("nav.testimonials")}
+      </a>
+      <a href="#contact" class="nav-link text-sm tracking-wide text-text-muted hover:text-amber transition-colors duration-300">
+        {t("nav.contact")}
+      </a>
+    </div>
+
+    <div class="flex items-center gap-4">
+      <LanguageSwitcher />
+      <a
+        href="#contact"
+        class="hidden sm:inline-flex items-center px-5 py-2.5 bg-amber text-bg font-semibold text-sm rounded-full hover:bg-amber-light transition-colors duration-300"
+      >
+        {t("nav.inquiry")}
+      </a>
+      <button
+        id="mobile-menu-btn"
+        class="md:hidden flex flex-col gap-1.5 p-2"
+        aria-label="Menu"
+      >
+        <span class="block w-6 h-0.5 bg-text transition-transform duration-300" id="bar1"></span>
+        <span class="block w-6 h-0.5 bg-text transition-opacity duration-300" id="bar2"></span>
+        <span class="block w-6 h-0.5 bg-text transition-transform duration-300" id="bar3"></span>
+      </button>
+    </div>
+  </div>
+
+  <div
+    id="mobile-menu"
+    class="md:hidden hidden bg-bg-surface/95 backdrop-blur-xl border-t border-border"
+  >
+    <div class="flex flex-col items-center gap-6 py-8">
+      <a href="#features" class="mobile-nav-link text-lg text-text-muted hover:text-amber transition-colors">
+        {t("nav.features")}
+      </a>
+      <a href="#testimonials" class="mobile-nav-link text-lg text-text-muted hover:text-amber transition-colors">
+        {t("nav.testimonials")}
+      </a>
+      <a href="#contact" class="mobile-nav-link text-lg text-text-muted hover:text-amber transition-colors">
+        {t("nav.contact")}
+      </a>
+      <a
+        href="#contact"
+        class="inline-flex items-center px-6 py-3 bg-amber text-bg font-semibold rounded-full"
+      >
+        {t("nav.inquiry")}
+      </a>
+    </div>
+  </div>
+</nav>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const navbar = document.getElementById("navbar")!;
+
+  ScrollTrigger.create({
+    start: "top -80",
+    onUpdate: (self) => {
+      if (self.direction === 1 && self.scroll() > 80) {
+        navbar.classList.add("bg-bg/90", "backdrop-blur-xl", "shadow-lg", "shadow-black/20");
+        navbar.classList.remove("bg-transparent");
+      } else if (self.scroll() <= 80) {
+        navbar.classList.remove("bg-bg/90", "backdrop-blur-xl", "shadow-lg", "shadow-black/20");
+        navbar.classList.add("bg-transparent");
+      }
+    },
+  });
+
+  const mobileBtn = document.getElementById("mobile-menu-btn")!;
+  const mobileMenu = document.getElementById("mobile-menu")!;
+  const bar1 = document.getElementById("bar1")!;
+  const bar2 = document.getElementById("bar2")!;
+  const bar3 = document.getElementById("bar3")!;
+  let isOpen = false;
+
+  mobileBtn.addEventListener("click", () => {
+    isOpen = !isOpen;
+    mobileMenu.classList.toggle("hidden");
+
+    if (isOpen) {
+      gsap.to(bar1, { rotation: 45, y: 4, duration: 0.3 });
+      gsap.to(bar2, { opacity: 0, duration: 0.2 });
+      gsap.to(bar3, { rotation: -45, y: -4, duration: 0.3 });
+    } else {
+      gsap.to(bar1, { rotation: 0, y: 0, duration: 0.3 });
+      gsap.to(bar2, { opacity: 1, duration: 0.2 });
+      gsap.to(bar3, { rotation: 0, y: 0, duration: 0.3 });
+    }
+  });
+
+  document.querySelectorAll(".mobile-nav-link").forEach((link) => {
+    link.addEventListener("click", () => {
+      isOpen = false;
+      mobileMenu.classList.add("hidden");
+      gsap.to(bar1, { rotation: 0, y: 0, duration: 0.3 });
+      gsap.to(bar2, { opacity: 1, duration: 0.2 });
+      gsap.to(bar3, { rotation: 0, y: 0, duration: 0.3 });
+    });
+  });
+</script>

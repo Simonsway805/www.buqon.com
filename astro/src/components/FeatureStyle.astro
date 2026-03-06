@@ -1,0 +1,77 @@
+---
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const images = [
+  {
+    src: "https://www.buqon.com/wp-content/uploads/2022/03/grillen-am-tisch-gartentisch-mit-grill-in-der-mitte.jpg",
+    alt: "Grillen am Tisch",
+  },
+  {
+    src: "https://www.buqon.com/wp-content/uploads/2022/03/grill-tisch-6-personen-gartentisch-mit-grilleinsatz.jpg",
+    alt: "Grill Tisch 6 Personen",
+  },
+  {
+    src: "https://www.buqon.com/wp-content/uploads/2022/03/gartentisch-mit-grilleinsatz-holz-6-personen.jpg",
+    alt: "Gartentisch mit Grilleinsatz",
+  },
+  {
+    src: "https://www.buqon.com/wp-content/uploads/2022/03/garten-tisch-mit-integriertem-grill-online-kaufen.jpg",
+    alt: "Garten Tisch mit integriertem Grill",
+  },
+];
+---
+
+<section id="feature-style" class="relative py-20 md:py-24 overflow-hidden">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center max-w-3xl mx-auto mb-12">
+      <span class="inline-block text-amber text-sm font-medium tracking-[0.2em] uppercase mb-4">
+        03
+      </span>
+      <h2 class="text-3xl md:text-5xl font-display font-bold text-text-heading leading-tight mb-6">
+        {t("feature.style.title")}
+      </h2>
+      <p class="text-lg text-text-muted leading-relaxed">
+        {t("feature.style.body")}
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4" id="style-gallery">
+      {images.map((img, i) => (
+        <div
+          class="gallery-item relative group overflow-hidden rounded-xl aspect-[3/4]"
+          style={`--delay: ${i * 0.1}s`}
+        >
+          <img
+            src={img.src}
+            alt={img.alt}
+            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-bg/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  gsap.from("#feature-style .gallery-item", {
+    y: 40,
+    opacity: 0,
+    duration: 0.5,
+    stagger: 0.1,
+    ease: "power2.out",
+    scrollTrigger: {
+      trigger: "#style-gallery",
+      start: "top 90%",
+    },
+  });
+</script>

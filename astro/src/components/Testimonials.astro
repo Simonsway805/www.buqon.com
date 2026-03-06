@@ -1,0 +1,104 @@
+---
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const testimonials = [
+  {
+    name: "Karim",
+    location: lang === "de" ? "Schweiz" : "Switzerland",
+    avatar: "https://www.buqon.com/wp-content/uploads/2022/01/happy-customer-karim.jpg",
+    quote:
+      lang === "de"
+        ? "Absolut cooles Grill-Erlebnis mit Freunden. Nicht mehr nur ein Grillmeister, der Abseits steht während die Gäste warten, nein alle grillen und haben Spaß miteinander. Mein neues Geschenk, der Grilltisch ist eine absolute Bereicherung und eine meiner besten Anschaffungen für den Garten."
+        : "An absolutely cool grilling experience with friends. No more just one grill master standing aside while guests wait — everyone grills and has fun together. My new gift, the grill table, is an absolute enrichment and one of my best garden purchases.",
+  },
+  {
+    name: "Susanne",
+    location: lang === "de" ? "Österreich" : "Austria",
+    avatar: "https://www.buqon.com/wp-content/uploads/2022/01/happy-customer-susanne.jpg",
+    quote:
+      lang === "de"
+        ? "BUQON ist jeden Cent wert. Wir nutzen ihn je nach Bedarf als praktischen Gartentisch, als Getränkekühler oder als Grilltisch für feine gesellige Abende. Was wir lieben: mit diesem Tisch ist es möglich, dass ALLE gleichzeitig grillen, essen und genießen."
+        : "BUQON is worth every cent. We use it as a practical garden table, drink cooler, or grill table for fine social evenings. What we love: with this table, it's possible for EVERYONE to grill, eat, and enjoy at the same time.",
+  },
+];
+---
+
+<section id="testimonials" class="relative py-20 md:py-24 overflow-hidden">
+  <div class="absolute inset-0 bg-gradient-to-b from-bg via-bg-surface/50 to-bg"></div>
+
+  <div class="relative max-w-7xl mx-auto px-6">
+    <div class="text-center mb-12 opacity-0 translate-y-6" id="testimonials-header">
+      <h2 class="text-3xl md:text-5xl font-display font-bold text-text-heading">
+        {t("testimonials.title")}
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8" id="testimonial-cards">
+      {testimonials.map((item) => (
+        <div class="testimonial-card opacity-0 translate-y-8 group relative bg-bg-card border border-border rounded-2xl p-8 md:p-10 transition-all duration-500 hover:border-amber/30 hover:shadow-lg hover:shadow-amber/5">
+          <div class="absolute top-8 right-8 text-6xl text-amber/10 font-display leading-none select-none">
+            &ldquo;
+          </div>
+
+          <div class="flex items-center gap-4 mb-6">
+            <img
+              src={item.avatar}
+              alt={item.name}
+              class="w-14 h-14 rounded-full object-cover ring-2 ring-amber/20"
+              loading="lazy"
+            />
+            <div>
+              <h4 class="font-semibold text-text-heading">{item.name}</h4>
+              <p class="text-sm text-text-muted">{item.location}</p>
+            </div>
+          </div>
+
+          <p class="text-text-muted leading-relaxed relative z-10">
+            {item.quote}
+          </p>
+
+          <div class="flex gap-1 mt-6">
+            {[...Array(5)].map(() => (
+              <svg class="w-4 h-4 text-amber" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+              </svg>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  gsap.to("#testimonials-header", {
+    y: 0,
+    opacity: 1,
+    duration: 0.6,
+    ease: "power2.out",
+    scrollTrigger: {
+      trigger: "#testimonials",
+      start: "top 92%",
+    },
+  });
+
+  gsap.to("#testimonial-cards .testimonial-card", {
+    y: 0,
+    opacity: 1,
+    duration: 0.6,
+    stagger: 0.15,
+    ease: "power2.out",
+    scrollTrigger: {
+      trigger: "#testimonial-cards",
+      start: "top 92%",
+    },
+  });
+</script>

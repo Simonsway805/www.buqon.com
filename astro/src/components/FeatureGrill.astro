@@ -1,0 +1,62 @@
+---
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<section id="feature-grill" class="relative py-20 md:py-24 overflow-hidden">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid md:grid-cols-2 gap-16 items-center">
+      <div class="grill-image relative order-2 md:order-1">
+        <div class="absolute -inset-4 bg-gradient-to-bl from-amber/10 to-transparent rounded-2xl blur-2xl"></div>
+        <img
+          src="https://www.buqon.com/wp-content/uploads/2022/02/tisch-mit-integriertem-grill-multifunktional-gartentisch-umbau-einfach-1024x433.png"
+          alt="Buqon DINE - Grill Conversion"
+          class="relative rounded-2xl w-full object-contain"
+          loading="lazy"
+        />
+      </div>
+      <div class="grill-text order-1 md:order-2">
+        <span class="inline-block text-amber text-sm font-medium tracking-[0.2em] uppercase mb-4">
+          02
+        </span>
+        <h2 class="text-3xl md:text-5xl font-display font-bold text-text-heading leading-tight mb-6">
+          {t("feature.grill.title")}
+        </h2>
+        <p class="text-lg text-text-muted leading-relaxed">
+          {t("feature.grill.body")}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  gsap.from("#feature-grill .grill-text", {
+    x: 40,
+    opacity: 0,
+    duration: 0.7,
+    ease: "power2.out",
+    scrollTrigger: {
+      trigger: "#feature-grill",
+      start: "top 85%",
+    },
+  });
+
+  gsap.from("#feature-grill .grill-image", {
+    x: -40,
+    opacity: 0,
+    duration: 0.7,
+    ease: "power2.out",
+    scrollTrigger: {
+      trigger: "#feature-grill",
+      start: "top 85%",
+    },
+  });
+</script>

@@ -1,0 +1,14 @@
+{
+  "name": "buqon-studio",
+  "private": true,
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "sanity dev",
+    "build": "sanity build",
+    "deploy": "sanity deploy"
+  },
+  "dependencies": {
+    "@sanity/vision": "^5.13.0",
+    "sanity": "^5.13.0"
+  }
+}

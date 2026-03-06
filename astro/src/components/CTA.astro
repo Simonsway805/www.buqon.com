@@ -1,0 +1,164 @@
+---
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<section id="contact" class="relative py-20 md:py-24 overflow-hidden">
+  <div class="absolute inset-0 bg-gradient-to-b from-bg via-bg-surface to-bg"></div>
+  <div class="absolute inset-0 opacity-5">
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_var(--color-amber)_0%,_transparent_50%)]"></div>
+  </div>
+
+  <div class="relative max-w-4xl mx-auto px-6">
+    <div class="text-center mb-12" id="cta-header">
+      <h2 class="text-3xl md:text-5xl font-display font-bold text-text-heading leading-tight mb-6">
+        {t("cta.title")}
+      </h2>
+      <p class="text-lg text-text-muted leading-relaxed max-w-2xl mx-auto">
+        {t("cta.body")}
+      </p>
+    </div>
+
+    <form
+      id="inquiry-form"
+      action="https://formsubmit.co/office@buqon.com"
+      method="POST"
+      class="max-w-xl mx-auto bg-bg-card border border-border rounded-2xl p-8 md:p-10 shadow-2xl shadow-black/30"
+    >
+      <input type="hidden" name="_subject" value="Neue Anfrage über buqon.com" />
+      <input type="hidden" name="_replyto" id="replyto-field" />
+      <input type="hidden" name="_template" value="table" />
+      <input type="hidden" name="_captcha" value="false" />
+      <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+
+      <div class="space-y-6">
+        <div>
+          <label for="name" class="block text-sm font-medium text-text-muted mb-2">
+            {t("form.name")}
+          </label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            required
+            class="w-full px-4 py-3 bg-bg-elevated border border-border rounded-xl text-text placeholder:text-text-muted/50 focus:outline-none focus:border-amber focus:ring-1 focus:ring-amber/30 transition-colors duration-300"
+            placeholder={lang === "de" ? "Dein Name" : "Your name"}
+          />
+        </div>
+
+        <div>
+          <label for="email" class="block text-sm font-medium text-text-muted mb-2">
+            {t("form.email")}
+          </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            class="w-full px-4 py-3 bg-bg-elevated border border-border rounded-xl text-text placeholder:text-text-muted/50 focus:outline-none focus:border-amber focus:ring-1 focus:ring-amber/30 transition-colors duration-300"
+            placeholder={lang === "de" ? "deine@email.com" : "your@email.com"}
+          />
+        </div>
+
+        <div>
+          <label for="message" class="block text-sm font-medium text-text-muted mb-2">
+            {t("form.message")}
+          </label>
+          <textarea
+            id="message"
+            name="message"
+            rows={4}
+            class="w-full px-4 py-3 bg-bg-elevated border border-border rounded-xl text-text placeholder:text-text-muted/50 focus:outline-none focus:border-amber focus:ring-1 focus:ring-amber/30 transition-colors duration-300 resize-none"
+            placeholder={lang === "de" ? "Deine Nachricht..." : "Your message..."}
+          ></textarea>
+        </div>
+
+        <button
+          type="submit"
+          id="submit-btn"
+          class="w-full py-4 bg-amber text-bg font-semibold text-lg rounded-xl hover:bg-amber-light transition-all duration-300 shadow-lg shadow-amber/20 hover:shadow-amber/30 hover:scale-[1.02] active:scale-[0.98]"
+        >
+          {t("cta.button")}
+        </button>
+
+        <p
+          id="form-status"
+          class="text-center text-sm hidden"
+          data-success={t("form.success")}
+          data-error={t("form.error")}
+          data-sending={t("form.sending")}
+          data-default={t("cta.button")}
+        ></p>
+      </div>
+    </form>
+  </div>
+</section>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  gsap.from("#cta-header", {
+    y: 30,
+    opacity: 0,
+    duration: 0.6,
+    ease: "power2.out",
+    scrollTrigger: {
+      trigger: "#contact",
+      start: "top 85%",
+    },
+  });
+
+  gsap.from("#inquiry-form", {
+    y: 40,
+    opacity: 0,
+    duration: 0.6,
+    ease: "power2.out",
+    scrollTrigger: {
+      trigger: "#inquiry-form",
+      start: "top 90%",
+    },
+  });
+
+  const form = document.getElementById("inquiry-form") as HTMLFormElement;
+  const emailInput = document.getElementById("email") as HTMLInputElement;
+  const replyToField = document.getElementById("replyto-field") as HTMLInputElement;
+  const submitBtn = document.getElementById("submit-btn") as HTMLButtonElement;
+  const statusEl = document.getElementById("form-status") as HTMLElement;
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    replyToField.value = emailInput.value;
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = statusEl.dataset.sending!;
+    statusEl.classList.add("hidden");
+
+    try {
+      const res = await fetch(form.action, {
+        method: "POST",
+        body: new FormData(form),
+        headers: { Accept: "application/json" },
+      });
+
+      if (res.ok) {
+        form.reset();
+        statusEl.textContent = statusEl.dataset.success!;
+        statusEl.className = "text-center text-sm text-green-400 mt-2";
+      } else {
+        throw new Error("Submit failed");
+      }
+    } catch {
+      statusEl.textContent = statusEl.dataset.error!;
+      statusEl.className = "text-center text-sm text-red-400 mt-2";
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = statusEl.dataset.default!;
+    }
+  });
+</script>

@@ -1,0 +1,49 @@
+{
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/de/",
+      "permanent": true
+    },
+    {
+      "source": "/multifunktionaler-grill-und-gartentisch-kinderleicht-umbauen/",
+      "destination": "/de/gartentisch-umbauen/",
+      "permanent": true
+    },
+    {
+      "source": "/multifunktionaler-grill--und-gartentisch-kinderleicht-umbauen/",
+      "destination": "/de/gartentisch-umbauen/",
+      "permanent": true
+    },
+    {
+      "source": "/7-sicherheitstipps-zum-grillen/",
+      "destination": "/de/sicherheit-beim-grillen/",
+      "permanent": true
+    },
+    {
+      "source": "/7-tipps-sicherheit-beim-grillen/",
+      "destination": "/de/sicherheit-beim-grillen/",
+      "permanent": true
+    },
+    {
+      "source": "/buqon-dine-gartentisch-mit-integriertem-grill/",
+      "destination": "/de/gartentisch-mit-integriertem-grill/",
+      "permanent": true
+    },
+    {
+      "source": "/en/multifunktionaler-grill-und-gartentisch-kinderleicht-umbauen/",
+      "destination": "/en/garden-table-conversion/",
+      "permanent": true
+    },
+    {
+      "source": "/en/7-tipps-sicherheit-beim-grillen/",
+      "destination": "/en/grilling-safety-tips/",
+      "permanent": true
+    },
+    {
+      "source": "/en/buqon-dine-gartentisch-mit-integriertem-grill/",
+      "destination": "/en/garden-table-with-integrated-grill/",
+      "permanent": true
+    }
+  ]
+}

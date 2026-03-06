@@ -1,0 +1,100 @@
+---
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<section id="feature-quality" class="relative py-20 md:py-24 overflow-hidden">
+  <div class="absolute inset-0 bg-gradient-to-b from-bg via-bg-surface to-bg"></div>
+
+  <div class="relative max-w-7xl mx-auto px-6">
+    <div class="grid md:grid-cols-2 gap-16 items-center">
+      <div class="quality-text">
+        <span class="inline-block text-amber text-sm font-medium tracking-[0.2em] uppercase mb-4">
+          04
+        </span>
+        <h2 class="text-3xl md:text-5xl font-display font-bold text-text-heading leading-tight mb-6">
+          {t("feature.quality.title")}
+        </h2>
+        <p class="text-lg text-text-muted leading-relaxed mb-8">
+          {t("feature.quality.body")}
+        </p>
+
+        <div class="grid grid-cols-3 gap-6">
+          <div class="quality-stat text-center">
+            <span class="block text-3xl md:text-4xl font-bold text-amber font-display" data-count="100">0</span>
+            <span class="block text-sm text-text-muted mt-1">% European</span>
+          </div>
+          <div class="quality-stat text-center">
+            <span class="block text-3xl md:text-4xl font-bold text-amber font-display" data-count="316">0</span>
+            <span class="block text-sm text-text-muted mt-1">Stainless Steel</span>
+          </div>
+          <div class="quality-stat text-center">
+            <span class="block text-3xl md:text-4xl font-bold text-amber font-display" data-count="10">0</span>
+            <span class="block text-sm text-text-muted mt-1">{getLangFromUrl(Astro.url) === "de" ? "Jahre Garantie" : "Years Warranty"}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="quality-image relative">
+        <div class="absolute -inset-4 bg-gradient-to-br from-amber/10 to-transparent rounded-2xl blur-2xl"></div>
+        <img
+          src="https://www.buqon.com/wp-content/uploads/2022/03/gartentisch-mit-grilleinsatz-holz-8-personen.jpg"
+          alt="Buqon DINE - Made in Europe"
+          class="relative rounded-2xl w-full aspect-[4/3] object-cover shadow-2xl shadow-black/40"
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  gsap.from("#feature-quality .quality-text", {
+    x: -40,
+    opacity: 0,
+    duration: 0.7,
+    ease: "power2.out",
+    scrollTrigger: {
+      trigger: "#feature-quality",
+      start: "top 85%",
+    },
+  });
+
+  gsap.from("#feature-quality .quality-image", {
+    x: 40,
+    opacity: 0,
+    duration: 0.7,
+    ease: "power2.out",
+    scrollTrigger: {
+      trigger: "#feature-quality",
+      start: "top 85%",
+    },
+  });
+
+  document.querySelectorAll<HTMLSpanElement>("[data-count]").forEach((el) => {
+    const target = parseInt(el.dataset.count || "0");
+    ScrollTrigger.create({
+      trigger: el,
+      start: "top 90%",
+      onEnter: () => {
+        gsap.to(el, {
+          innerText: target,
+          duration: 1.5,
+          ease: "power2.out",
+          snap: { innerText: 1 },
+          onUpdate() {
+            el.textContent = Math.round(parseFloat(el.textContent || "0")).toString();
+          },
+        });
+      },
+      once: true,
+    });
+  });
+</script>

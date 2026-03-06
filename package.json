@@ -1,0 +1,5 @@
+{
+  "name": "buqon-website",
+  "private": true,
+  "workspaces": ["astro", "studio"]
+}

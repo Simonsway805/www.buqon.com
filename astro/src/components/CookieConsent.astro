@@ -1,0 +1,67 @@
+---
+import { getLangFromUrl } from "@/i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const privacyHref = lang === "de" ? "/de/datenschutz/" : "/en/privacy/";
+
+const text =
+  lang === "de"
+    ? "Wir verwenden Cookies, um dein Erlebnis auf unserer Website zu verbessern."
+    : "We use cookies to improve your experience on our website.";
+const privacyLabel = lang === "de" ? "Mehr erfahren" : "Learn more";
+const acceptLabel = lang === "de" ? "Akzeptieren" : "Accept";
+const declineLabel = lang === "de" ? "Ablehnen" : "Decline";
+---
+
+<div
+  id="cookie-banner"
+  class="fixed bottom-0 left-0 right-0 z-[9999] translate-y-full transition-transform duration-500 ease-out"
+  role="dialog"
+  aria-label={lang === "de" ? "Cookie-Hinweis" : "Cookie notice"}
+>
+  <div class="max-w-4xl mx-auto px-4 pb-4 md:px-6 md:pb-6">
+    <div class="bg-bg-card border border-border rounded-2xl p-5 md:p-6 shadow-2xl shadow-black/50 backdrop-blur-sm flex flex-col md:flex-row items-start md:items-center gap-4">
+      <p class="text-sm text-text-muted leading-relaxed flex-1">
+        {text}{" "}
+        <a href={privacyHref} class="text-amber underline underline-offset-4 hover:text-amber-light transition-colors">
+          {privacyLabel}
+        </a>
+      </p>
+      <div class="flex gap-3 shrink-0">
+        <button
+          id="cookie-decline"
+          class="px-5 py-2.5 text-sm font-medium text-text-muted border border-border rounded-xl hover:text-text hover:border-border-light transition-colors"
+        >
+          {declineLabel}
+        </button>
+        <button
+          id="cookie-accept"
+          class="px-5 py-2.5 text-sm font-medium bg-amber text-bg rounded-xl hover:bg-amber-light transition-colors"
+        >
+          {acceptLabel}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const banner = document.getElementById("cookie-banner")!;
+  const consent = localStorage.getItem("cookie-consent");
+
+  if (!consent) {
+    requestAnimationFrame(() => {
+      banner.classList.remove("translate-y-full");
+      banner.classList.add("translate-y-0");
+    });
+  }
+
+  function dismiss(value: string) {
+    localStorage.setItem("cookie-consent", value);
+    banner.classList.remove("translate-y-0");
+    banner.classList.add("translate-y-full");
+  }
+
+  document.getElementById("cookie-accept")!.addEventListener("click", () => dismiss("accepted"));
+  document.getElementById("cookie-decline")!.addEventListener("click", () => dismiss("declined"));
+</script>
