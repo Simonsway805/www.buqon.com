@@ -96,9 +96,9 @@ const anchor = (hash: string) => isHome ? hash : `/${lang}/${hash}`;
   function toggleMenu(open: boolean) {
     isOpen = open;
     mobileMenu.classList.toggle("hidden", !open);
-    bar1.style.transform = open ? "rotate(45deg) translateY(4px)" : "";
+    bar1.style.transform = open ? "rotate(45deg) translateY(8px)" : "";
     bar2.style.opacity = open ? "0" : "1";
-    bar3.style.transform = open ? "rotate(-45deg) translateY(-4px)" : "";
+    bar3.style.transform = open ? "rotate(-45deg) translateY(-8px)" : "";
   }
 
   mobileBtn.addEventListener("click", () => toggleMenu(!isOpen));
